@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFEPASS — Control automatizado de aforo | IRTRA Petapa</title>
+<meta name="description" content="SAFEPASS: sistema electrónico autónomo de control de aforo y autorización de inicio para atracciones. Proyecto de Ingeniería en Automatización y Control aplicada a Sistemas Electromecánicos de Entretenimiento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="progress-rail" id="progressRail"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <span class="nav-mark" aria-hidden="true"></span>
+      SAFEPASS
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#reto">El reto</a>
+      <a href="#solucion">Solución</a>
+      <a href="#funcionamiento">Funcionamiento</a>
+      <a href="#tecnologia">Tecnología</a>
+      <a href="#prototipo">Prototipo</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#equipo">Equipo</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-kicker">IRTRA Petapa — Control de aforo</p>
+        <h1 class="hero-title">SAFEPASS</h1>
+        <p class="hero-subtitle">Sistema inteligente de control de aforo para atracciones de entretenimiento</p>
+        <p class="hero-tagline">Seguridad automatizada. Control preciso. Experiencia confiable.</p>
+        <div class="hero-actions">
+          <a href="#solucion" class="btn btn-primary">Conocer la solución</a>
+          <a href="#prototipo" class="btn btn-ghost">Ver demostración</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 480 480" class="hero-svg">
+          <circle cx="240" cy="240" r="200" class="ring ring-outer"/>
+          <circle cx="240" cy="240" r="150" class="ring ring-mid"/>
+          <g class="occupancy-figures">
+            <circle cx="150" cy="150" r="14" class="fig fig-on"/>
+            <circle cx="240" cy="120" r="14" class="fig fig-on"/>
+            <circle cx="330" cy="150" r="14" class="fig fig-on"/>
+            <circle cx="180" cy="330" r="14" class="fig fig-on"/>
+            <circle cx="300" cy="330" r="14" class="fig fig-on"/>
+            <circle cx="240" cy="360" r="14" class="fig fig-blocked"/>
+          </g>
+          <line x1="240" y1="360" x2="240" y2="240" class="scan-line"/>
+          <text x="240" y="252" text-anchor="middle" class="hero-count-num">5</text>
+          <text x="240" y="276" text-anchor="middle" class="hero-count-label">/ 5 PERSONAS</text>
+        </svg>
+      </div>
+    </div>
+    <a href="#reto" class="scroll-cue" aria-label="Bajar a la siguiente sección">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ============ EL RETO ============ -->
+  <section id="reto" class="section reto">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>El reto</h2>
+        <p class="section-lead">El ingreso de personas a una atracción requiere un control preciso del aforo para evitar sobrecupo y mejorar la seguridad de los visitantes.</p>
+      </div>
+
+      <div class="problem-statement">
+        <p>Control inseguro o manual del aforo de una atracción</p>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <svg class="problem-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"/><path d="M24 14v12l8 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <h3>Conteo manual</h3>
+          <p>Depende del criterio y disponibilidad de una persona en todo momento.</p>
+        </div>
+        <div class="problem-card">
+          <svg class="problem-icon" viewBox="0 0 48 48" fill="none"><path d="M24 6L4 40h40L24 6z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 20v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="34" r="1.5" fill="currentColor"/></svg>
+          <h3>Riesgo de sobrecupo</h3>
+          <p>Sin un límite verificado, puede ingresar más personas de las que la atracción soporta con seguridad.</p>
+        </div>
+        <div class="problem-card">
+          <svg class="problem-icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/><path d="M8 18h32" stroke="currentColor" stroke-width="2.5"/><path d="M16 26h4M28 26h4M16 32h4M28 32h4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <h3>Falta de alertas</h3>
+          <p>No existe una señal inmediata y visible de cuándo se ha alcanzado el límite operativo.</p>
+        </div>
+        <div class="problem-card">
+          <svg class="problem-icon" viewBox="0 0 48 48" fill="none"><path d="M14 34c0-8 4-14 10-14s10 6 10 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="14" r="6" stroke="currentColor" stroke-width="2.5"/><path d="M6 40h36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <h3>Inicio sin control</h3>
+          <p>La atracción puede comenzar sin una verificación clara de que el aforo es seguro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLUCIÓN ============ -->
+  <section id="solucion" class="section solucion">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Nuestra solución</h2>
+        <p class="section-lead">SAFEPASS integra sensores, indicadores y lógica de control en un solo sistema autónomo que gestiona el aforo de principio a fin.</p>
+      </div>
+
+      <div class="solucion-grid">
+        <div class="capacity-block">
+          <span class="capacity-eyebrow">Capacidad configurada</span>
+          <div class="capacity-number">5</div>
+          <span class="capacity-caption">personas por ciclo</span>
+        </div>
+
+        <div class="solucion-components">
+          <ul class="component-list">
+            <li>Arduino Uno R3</li>
+            <li>Sensor ultrasónico HC-SR04</li>
+            <li>Pantalla LCD 16×2</li>
+            <li>LEDs indicadores</li>
+            <li>Buzzer</li>
+            <li>Push button</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block-pair">
+        <div class="block-card block-blocked">
+          <span class="block-tag">6.ª persona</span>
+          <p class="block-message">Acceso bloqueado</p>
+          <p class="block-detail">El sistema no registra un ingreso adicional una vez alcanzado el límite.</p>
+        </div>
+        <div class="block-card block-full">
+          <span class="block-tag">Estado</span>
+          <p class="block-message">Capacidad llena</p>
+          <p class="block-detail">LED rojo encendido, LED verde apagado y buzzer activo hasta que el operador autorice el inicio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENEFICIOS ============ -->
+  <section id="beneficios" class="section beneficios">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>¿Qué aporta SAFEPASS a IRTRA?</h2>
+      </div>
+
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <span class="benefit-index">Seguridad</span>
+          <h3>Mayor seguridad</h3>
+          <p>Control automático del número de visitantes que ingresan a la atracción.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-index">Aforo</span>
+          <h3>Prevención del sobrecupo</h3>
+          <p>El sistema bloquea el registro de una sexta persona una vez lleno el aforo.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-index">Visibilidad</span>
+          <h3>Control en tiempo real</h3>
+          <p>El operador puede conocer el estado del aforo en cualquier momento mediante el LCD.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-index">Proceso</span>
+          <h3>Automatización</h3>
+          <p>Reduce la dependencia de procesos manuales para el conteo y control de acceso.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-index">Alertas</span>
+          <h3>Señalización inmediata</h3>
+          <p>LED, buzzer y LCD informan el estado del sistema de forma clara e inmediata.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-index">Autorización</span>
+          <h3>Operación controlada</h3>
+          <p>El inicio de la atracción requiere autorización manual mediante botón físico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CÓMO FUNCIONA ============ -->
+  <section id="funcionamiento" class="section funcionamiento">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>¿Cómo funciona?</h2>
+        <p class="section-lead">Un ciclo completo, desde la detección de ingreso hasta el reinicio para la siguiente ronda.</p>
+      </div>
+
+      <div class="flow-track" id="flowTrack">
+        <div class="flow-step"><span class="flow-num">01</span><h3>Detección</h3><p>El HC-SR04 detecta a la persona que ingresa.</p></div>
+        <div class="flow-step"><span class="flow-num">02</span><h3>Conteo</h3><p>El Arduino registra el ingreso.</p></div>
+        <div class="flow-step"><span class="flow-num">03</span><h3>Verificación</h3><p>Se comprueba la capacidad disponible.</p></div>
+        <div class="flow-step flow-step--highlight"><span class="flow-num">04</span><h3>Capacidad máxima</h3><p>5 / 5 personas.</p></div>
+        <div class="flow-step"><span class="flow-num">05</span><h3>Bloqueo</h3><p>La sexta persona no puede ser registrada.</p></div>
+        <div class="flow-step flow-step--alert"><span class="flow-num">06</span><h3>Alerta</h3><p>LED rojo, buzzer y mensaje de capacidad llena.</p></div>
+        <div class="flow-step"><span class="flow-num">07</span><h3>Autorización</h3><p>El sistema espera la pulsación física del botón.</p></div>
+        <div class="flow-step"><span class="flow-num">08</span><h3>Cuenta regresiva</h3><p>5 → 4 → 3 → 2 → 1</p></div>
+        <div class="flow-step flow-step--go"><span class="flow-num">09</span><h3>Inicio</h3><p>Juego iniciado.</p></div>
+        <div class="flow-step"><span class="flow-num">10</span><h3>Salida</h3><p>Se detectan las personas que abandonan la atracción.</p></div>
+        <div class="flow-step"><span class="flow-num">11</span><h3>Reinicio</h3><p>0 personas — el sistema queda listo para un nuevo ciclo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INDICADOR DE AFORO ============ -->
+  <section class="section aforo">
+    <div class="section-inner aforo-inner">
+
+      <div class="aforo-panel">
+        <span class="aforo-label">Control de aforo</span>
+        <div class="aforo-count"><span id="aforoNum">5</span><span class="aforo-slash">/ 5</span></div>
+        <span class="aforo-status">Capacidad máxima</span>
+        <div class="aforo-figures" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="7"/><path d="M6 36c0-9 6-15 14-15s14 6 14 15"/></svg>
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="7"/><path d="M6 36c0-9 6-15 14-15s14 6 14 15"/></svg>
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="7"/><path d="M6 36c0-9 6-15 14-15s14 6 14 15"/></svg>
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="7"/><path d="M6 36c0-9 6-15 14-15s14 6 14 15"/></svg>
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="7"/><path d="M6 36c0-9 6-15 14-15s14 6 14 15"/></svg>
+        </div>
+      </div>
+
+      <div class="aforo-panel aforo-panel--blocked">
+        <span class="aforo-label">Sexta persona</span>
+        <div class="aforo-count"><span>6</span><span class="aforo-slash">/ 5</span></div>
+        <span class="aforo-status aforo-status--blocked">Bloqueado — no aceptada</span>
+        <p class="aforo-note">El sistema conserva el aforo en 5 personas; el ingreso adicional queda rechazado hasta que se libere un espacio.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ ESTADO DEL SISTEMA ============ -->
+  <section class="section estado">
+    <div class="section-inner estado-inner">
+      <div class="estado-badge">
+        <span class="estado-dot" aria-hidden="true"></span>
+        Estado del sistema
+      </div>
+      <p class="estado-value">Funciona 100%</p>
+    </div>
+  </section>
+
+  <!-- ============ TECNOLOGÍA ============ -->
+  <section id="tecnologia" class="section tecnologia">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Tecnología</h2>
+        <p class="section-lead">Componentes electrónicos y herramientas utilizadas en el desarrollo del prototipo.</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-item"><span>Arduino Uno R3</span></div>
+        <div class="tech-item"><span>Sensor HC-SR04</span></div>
+        <div class="tech-item"><span>LCD 16×2 + I2C</span></div>
+        <div class="tech-item"><span>LED rojo</span></div>
+        <div class="tech-item"><span>LED verde</span></div>
+        <div class="tech-item"><span>Buzzer</span></div>
+        <div class="tech-item"><span>Push button</span></div>
+        <div class="tech-item"><span>Protoboard</span></div>
+        <div class="tech-item"><span>Resistencias</span></div>
+        <div class="tech-item"><span>Cables jumper</span></div>
+      </div>
+
+      <div class="tech-meta">
+        <div class="tech-meta-item">
+          <span class="tech-meta-label">Programación</span>
+          <span class="tech-meta-value">C++</span>
+        </div>
+        <div class="tech-meta-item">
+          <span class="tech-meta-label">Simulación</span>
+          <span class="tech-meta-value">Tinkercad Circuits</span>
+        </div>
+      </div>
+
+      <div class="connections">
+        <h3>Conexiones principales</h3>
+        <div class="connections-grid">
+          <div class="conn-row"><span>LED rojo</span><span class="conn-pin">Pin 2</span></div>
+          <div class="conn-row"><span>LED verde</span><span class="conn-pin">Pin 4</span></div>
+          <div class="conn-row"><span>TRIG HC-SR04</span><span class="conn-pin">A2</span></div>
+          <div class="conn-row"><span>ECHO HC-SR04</span><span class="conn-pin">A3</span></div>
+          <div class="conn-row"><span>Buzzer</span><span class="conn-pin">A1</span></div>
+          <div class="conn-row"><span>Push button</span><span class="conn-pin">Pin 7</span></div>
+          <div class="conn-row"><span>LCD SDA</span><span class="conn-pin">A4</span></div>
+          <div class="conn-row"><span>LCD SCL</span><span class="conn-pin">A5</span></div>
+          <div class="conn-row"><span>LCD I2C</span><span class="conn-pin">0x27</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROTOTIPO Y DEMOSTRACIÓN ============ -->
+  <section id="prototipo" class="section prototipo">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Prototipo y demostración</h2>
+        <p class="section-lead">Circuito simulado en Tinkercad y documentado en video.</p>
+      </div>
+
+      <div class="video-frame">
+        <video id="circuitVideo" controls preload="metadata" playsinline>
+          <source src="Recursos/videocircuitof.mp4" type="video/mp4">
+        </video>
+        <div class="video-fallback" id="videoFallback" hidden>
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"/><path d="M19 16l14 8-14 8V16z" fill="currentColor"/></svg>
+          <p>Demostración del prototipo</p>
+          <span>Coloca <code>videocircuitof.mp4</code> dentro de la carpeta Recursos para que se reproduzca aquí.</span>
+        </div>
+      </div>
+
+      <div class="infografia-card">
+        <div class="infografia-text">
+          <h3>Infografía ejecutiva</h3>
+          <p>Consulta la síntesis visual de la solución SAFEPASS.</p>
+        </div>
+        <a href="Recursos/SAFEPASS.pdf" class="btn btn-outline" target="_blank" rel="noopener">Ver infografía</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOCUMENTACIÓN ============ -->
+  <section class="section documentacion">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Documentación del proyecto</h2>
+      </div>
+      <div class="doc-actions">
+        <a href="Recursos/documentofinal-SAFEPASS.pdf" class="btn btn-primary" target="_blank" rel="noopener">Ver documento PDF</a>
+        <a href="Recursos/documentofinal-SAFEPASS.docx" class="btn btn-outline" download>Descargar documento Word</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RECURSOS Y CÓDIGO ============ -->
+  <section id="recursos" class="section recursos">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Recursos y código</h2>
+      </div>
+
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Repositorio de código</h3>
+          <p class="resource-pending">[Enlace GitHub pendiente]</p>
+          <div class="resource-actions">
+            <span class="btn btn-outline btn-disabled" aria-disabled="true">Ver repositorio</span>
+            <div class="qr-slot">QR GitHub</div>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Podcast del proyecto</h3>
+          <p class="resource-pending">Próximamente</p>
+          <div class="resource-actions">
+            <span class="btn btn-outline btn-disabled" aria-disabled="true">[Enlace del podcast]</span>
+            <div class="qr-slot">QR Podcast</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ODS ============ -->
+  <section class="section ods">
+    <div class="section-inner ods-inner">
+      <div class="ods-primary">
+        <span class="ods-number">ODS 9</span>
+        <h2>Industria, innovación e infraestructura</h2>
+        <p>SAFEPASS aplica automatización, electrónica y programación para desarrollar una solución tecnológica orientada a mejorar la seguridad y eficiencia del control de acceso en una atracción.</p>
+      </div>
+      <div class="ods-secondary">
+        <span class="ods-number ods-number--secondary">ODS 11</span>
+        <p>Contribuye además a ciudades y comunidades más seguras, al aportar control operativo en espacios de alta afluencia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EQUIPO ============ -->
+  <section id="equipo" class="section equipo">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>Equipo de desarrollo</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="avatar-slot" aria-hidden="true"></div>
+          <p>Stephanie Ramirez</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar-slot" aria-hidden="true"></div>
+          <p>Brianna de Leon</p>
+        </div>
+        <div class="team-member">
+          <div class="avatar-slot" aria-hidden="true"></div>
+          <p>Jose Garcia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="section cta-final">
+    <div class="section-inner cta-inner">
+      <h2>¿Listos para dar el siguiente paso en seguridad y control?</h2>
+      <p>SAFEPASS convierte el control de aforo en un proceso automatizado, visible y controlado.</p>
+      <div class="hero-actions">
+        <a href="#solucion" class="btn btn-primary-inverse">Explorar la solución</a>
+        <a href="#recursos" class="btn btn-ghost-inverse">Ver documentación</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-mark" aria-hidden="true"></span>
+      SAFEPASS
+    </div>
+    <p class="footer-desc">Sistema de control automatizado de aforo.</p>
+    <p class="footer-meta">Proyecto Final — Ingeniería en Automatización y Control aplicada a Sistemas Electromecánicos de Entretenimiento</p>
+    <p class="footer-meta">IRTRA Petapa</p>
+    <p class="footer-team">Stephanie Ramirez · Brianna de Leon · Jose Garcia</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
