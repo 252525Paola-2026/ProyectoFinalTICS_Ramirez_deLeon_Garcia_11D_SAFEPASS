@@ -89,17 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const fallback = document.getElementById('videoFallback');
 
   if (video && fallback) {
+    // Solo mostramos el respaldo si el archivo realmente falla al cargar
+    // (por ejemplo, si no existe en recursos/). El evento "stalled" se
+    // eliminó porque se dispara con frecuencia incluso cuando el video
+    // es válido, ocultándolo de forma incorrecta.
     video.addEventListener('error', () => {
       video.style.display = 'none';
       fallback.hidden = false;
-    }, true);
-
-    // Si la fuente no carga (archivo ausente en recursos/), también mostramos el respaldo
-    video.addEventListener('stalled', () => {
-      if (video.readyState === 0) {
-        video.style.display = 'none';
-        fallback.hidden = false;
-      }
     });
   }
 
