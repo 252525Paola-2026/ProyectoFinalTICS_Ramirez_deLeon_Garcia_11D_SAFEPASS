@@ -2,7 +2,31 @@
 // SAFEPASS — script.js
 // =========================================================
 
+// ---------------------------------------------------------
+// Enlace del podcast en YouTube.
+// Aún no está disponible: NO se ha inventado ningún enlace.
+// Cuando exista, reemplaza la cadena vacía por la URL de
+// inserción (embed), por ejemplo:
+// const YOUTUBE_PODCAST_URL = 'https://www.youtube.com/embed/VIDEO_ID';
+// ---------------------------------------------------------
+const YOUTUBE_PODCAST_URL = ''; // [ENLACE YOUTUBE PODCAST PENDIENTE]
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- Insertar video de YouTube del podcast (si ya existe enlace) ---------- */
+  const youtubeEmbed = document.getElementById('youtubeEmbed');
+  const youtubePlaceholder = document.getElementById('youtubePlaceholder');
+
+  if (youtubeEmbed && YOUTUBE_PODCAST_URL) {
+    const iframe = document.createElement('iframe');
+    iframe.src = YOUTUBE_PODCAST_URL;
+    iframe.title = 'Podcast del proyecto SAFEPASS';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    if (youtubePlaceholder) youtubePlaceholder.remove();
+    youtubeEmbed.appendChild(iframe);
+  }
 
   /* ---------- Menú hamburguesa (móvil) ---------- */
   const navToggle = document.getElementById('navToggle');
@@ -70,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fallback.hidden = false;
     }, true);
 
-    // Si la fuente no carga (archivo ausente en Recursos/), también mostramos el respaldo
+    // Si la fuente no carga (archivo ausente en recursos/), también mostramos el respaldo
     video.addEventListener('stalled', () => {
       if (video.readyState === 0) {
         video.style.display = 'none';
