@@ -9,7 +9,7 @@
 // inserción (embed), por ejemplo:
 // const YOUTUBE_PODCAST_URL = 'https://www.youtube.com/embed/VIDEO_ID';
 // ---------------------------------------------------------
-const YOUTUBE_PODCAST_URL = ''; // [ENLACE YOUTUBE PODCAST PENDIENTE]
+const YOUTUBE_PODCAST_URL = 'https://www.youtube.com/embed/ygdWj_O0q14';
 
 document.addEventListener('DOMContentLoaded', () => {
 
